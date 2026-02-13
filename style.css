@@ -1,0 +1,234 @@
+/* ===== Body & Container ===== */
+body {
+  margin: 0;
+  height: 100vh;
+  background: #ffe6f0; /* soft pink background */
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 400px;   /* adjust this number */
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  text-align: center;
+}
+
+/* ===== Envelope ===== */
+.envelope {
+  position: relative;
+  width: 500px;
+  height: 360px;
+  cursor: pointer;
+  overflow: visible;      /* allows card to stick out */
+  perspective: 1000px;    /* better 3D effect */
+}
+
+/* Envelope body */
+.envelope .body {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #ffccd5;
+  border-radius: 8px;
+  z-index: 1;
+}
+
+/* Flap */
+.envelope .flap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #ff8fab;
+  clip-path: polygon(0 0, 50% 50%, 100% 0);
+  transform-origin: top center;
+  transform: rotateX(0deg);   /* CLOSED */
+  transition: transform 1s ease-in-out;
+  z-index: 2;
+}
+
+.envelope.open .flap {
+  transform: rotateX(-180deg);  /* OPENS upward */
+}
+
+.open-text {
+  position: absolute;
+  width: 100%;
+  top: 25px;
+  color: white;
+  font-weight: bold;
+  z-index: 3;
+  font-size: 32px;
+  font-family: 'Pacifico';  
+}
+
+
+/* ===== Card (Inside Envelope) ===== */
+.card {
+  position: absolute;
+  bottom: 0;
+  left: 50%;                 /* move to center */
+  transform: translate(-50%, 100%);  /* center + hidden */
+  width: 85%;                /* smaller width */
+  padding: 15px;             /* slightly smaller padding */
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 10px 25px rgba(0,0,0,0.2);
+  transition: transform 5s ease;
+  z-index: 3;
+}
+
+/* When envelope opens, card slides up */
+.envelope.open .card {
+  transform: translate(-50%, -60px);
+  animation: floatCard 2.5s ease-in-out infinite;
+}
+
+/* ===== Hidden ===== */
+
+.hidden {
+  display: none; /* must be here */
+}
+
+/* ===== Buttons ===== */
+button {
+  margin: 10px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+   transition: transform 0.2s;
+}
+
+button:hover {
+  transform: scale(1.1);
+}
+
+/* ===== Pop-up Animation ===== */
+@keyframes popUp {
+  from { transform: scale(0); }
+  to { transform: scale(1); }
+}
+
+/* ===== Floating Heart ===== */
+.heart {
+  position: absolute;
+  color: #ff4d6d;
+  font-size: 20px;
+  animation: floatUp 3s ease-in infinite;
+  pointer-events: none;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) scale(1); opacity: 1; }
+  100% { transform: translateY(-200px) scale(1.5); opacity: 0; }
+
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
+}
+
+@keyframes floatCard {
+  0%, 100% { transform: translate(-50%, -60px); }
+  50% { transform: translate(-50%, -70px); }
+}
+
+.open-text {
+  animation: bounce 1.5s infinite;
+}
+
+/* Adds rotation + playful scale */
+button:hover {
+  transform: rotate(-5deg) scale(1.1);
+  transition: all 0.3s;
+}
+
+/* Make "No" button dodge if you want */
+button:nth-child(3):hover {
+  transform: translateX(50px) rotate(10deg);
+}
+
+/* Banner container at the top, centered */
+.image-banner {
+  display: flex;                  /* side-by-side */
+  gap: 40px;                       /* space between images */
+  justify-content: center;         /* center the row horizontally */
+  align-items: center;             /* vertical alignment */
+  padding: 20px;                   /* space from top of screen */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+  background: transparent;         /* or add a subtle bg if you like */
+}
+
+/* Make images bigger */
+.banner-img {
+  width: 130px;                    /* bigger image size */
+  height: auto;
+  opacity: 0;                      /* hidden at start */
+  transition: opacity 1s ease-in-out;
+}
+
+/* Optional: Make responsive for small screens */
+@media (max-width: 600px) {
+  .banner-img {
+    width: 100px;                  /* shrink on small screens */
+  }
+  .image-banner {
+    gap: 10px;
+    padding: 10px;
+  }
+}
+
+/* Confetti */
+#confetti-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* clicks go through */
+  overflow: hidden;
+  z-index: 10;          /* above everything */
+}
+
+.confetti {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: #ff4d6d;
+  opacity: 0.9;
+  animation: fall 3s linear forwards;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(800px) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+.verse {
+  position: absolute;
+  left: -250px; /* move it to the side of the envelope */
+  top: 60%;
+  transform: translateY(-50%);
+  font-family: 'Dancing Script', cursive;
+  font-size: 24px;
+  color: #3a3a3a;
+  background-color: rgba(255,255,255,0.8);
+  padding: 10px 15px;
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+  opacity: 0;               /* hidden at first */
+  transition: opacity 2s ease, left 2s ease;
+}

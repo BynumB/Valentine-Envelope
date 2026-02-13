@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Open Me ❤️</title>
+
+  <link rel="stylesheet" href="style.css">
+
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+ <!-- IMAGE BANNER -->
+<div class="image-banner" id="imageBanner">
+  <img src="IMG_8414.JPG" class="banner-img">
+  <img src="IMG_8434.JPG" class="banner-img">
+  <img src="lp_image.JPG" class="banner-img">
+  <img src="IMG_2475.JPG" class="banner-img">
+  <img src="IMG_8413.JPG" class="banner-img">
+  <img src="IMG_8447.JPG" class="banner-img">
+  <img src="IMG_8774.JPG" class="banner-img">
+</div>
+
+<!-- ENVELOPE + CARD -->
+<div class="container">
+  <div class="verse" id="verse">
+  “Love each other with genuine affection, <br>
+  and take delight in honoring each other. ' <br>
+   - Romans 12:10 ✝
+  </div>
+
+  
+  <div class="envelope" onclick="openEnvelope()">
+
+    <div class="flap"></div>
+    <div class="body"></div>
+    
+
+    <!-- CARD NOW INSIDE ENVELOPE -->
+    <div class="card" id="card">
+      <h1>Will you be my 
+          "Non-Valentine"? ❤️</h1>
+
+      <div class="buttons">
+        <button onclick="yesAnswer()">YES 😍</button>
+        <button onclick="maybeAnswer()">Maybe 🤔</button>
+        <button onclick="noAnswer()">No 🙃</button>
+      </div>
+    
+
+      <p id="response"></p>
+    </div>
+    <div id="confetti-container"></div>
+
+    <p class="open-text">Open Me 💌</p>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+
+
+
+</body>
+</html>
